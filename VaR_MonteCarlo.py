@@ -4,29 +4,57 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 
 
+"""
+Monte Carlo (GBM) Implicit Formula:
+dSt = mu*St*dt + sigma*St*dW
+
+Monte Carlo (GBM) Explicit Formula:
+St = S0*exp((mu - sigma**2 / 2)*dt - sigma*Wt)
+
+Value at Risk (Monte Carlo):
+VaR = (1-c)th Percetile Of Rt
+
+Parameters:
+St = Asset Price At Time t
+S0 = Asset Price At Time t=0 (Initial Price)
+mu = Mean Return / Expected Return (Drift)
+sigma = Volatility (Constant)
+dt = Time Periods
+n = Number Of Time Periods
+T = Number Of Years
+Wt = Standard Brownian Motion (Wiener Process)
+Ns = Number Of Simulations
+c = Confidence Level
+zc = Standard Normal Value Corresponding To Confidence Level
+Rp = Total Return Of A Path
+Rt = Return On Every Step Of A Path
+
+"""
+
+
 #PARAMETERS
 mu = 0.14
 sigma = 0.30
 S0 = 100.0
 T = 1
 n = 252
-Ns = 1000
 c = 0.95
+Ns = 1000
 zc = norm.ppf(c)
 steps = T*n
-t = T/n
+dt = T/n
 paths = []
 Rs = []
 
 
 #MULTIPLE PRICE PATHS SIMULATION PROCESS
 for path in range(Ns):
-  S = [S0]
+  St = [S0]
   for step in range(steps):
     Z = np.random.normal(0, 1)
-    exponent = (mu - sigma**2 / 2) * t + sigma * np.sqrt(t) * Z
-    S.append(float(S[-1] * np.exp(exponent)))
-  paths.append(S)
+    exponent = (mu - sigma**2 / 2) * dt + sigma * np.sqrt(dt) * Z
+    St.append(float(St[-1] * np.exp(exponent)))
+  paths.append(St)
 
 
 #PATHWISE SIMULATED RETURNS CALCULATION (PERIODIC)
