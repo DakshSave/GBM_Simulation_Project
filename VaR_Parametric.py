@@ -12,7 +12,7 @@ VaR = delta*S0 * (mu*T - sigma*(T**1/2) * zc)
 Parameters:
 delta = Asset Quantity
 S0 = Asset Price
-mu = Expected Return (Drift)
+mu = Mean Return / Expected Return (Drift)
 T = Number Of Years
 sigma = Volatility (Constant)
 c = Confidence Level
@@ -24,7 +24,7 @@ zc = Standard Normal Value Corresponding To Confidence Level
 #PARAMETERS
 delta = _ #Replace the underscore with Asset Quantity
 S0 = _ #Replace the underscore with Asset Price
-mu = _ #Replace the underscore with Expected Return (Drift)
+mu = _ #Replace the underscore with Mean Return / Expected Return (Drift)
 sigma = _ #Replace the underscore with Volatility (Constant)
 T = _ #Replace the underscore with Number Of Years
 c = _ #Replace the underscore with Confidence Level 
