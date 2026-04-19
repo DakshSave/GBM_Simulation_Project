@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 
+
 """
 
 Value At Risk (Parametric) Formula:
@@ -19,18 +20,21 @@ zc = Standard Normal Value Corresponding To Confidence Level
 
 """
 
+
 #PARAMETERS
-delta = 1
-S0 = 100
-mu = 0.14
-sigma = 0.30
-T = 1
-c = 0.95
+delta = _ #Replace the underscore with Asset Quantity
+S0 = _ #Replace the underscore with Asset Price
+mu = _ #Replace the underscore with Expected Return (Drift)
+sigma = _ #Replace the underscore with Volatility (Constant)
+T = _ #Replace the underscore with Number Of Years
+c = _ #Replace the underscore with Confidence Level 
 zc = norm.ppf(c)
+
 
 #VaR CALCULATION
 VaR = delta*S0 * (sigma*np.sqrt(T)*zc - mu*T)
 print(f"Value at Risk ({c*100:.0f}% confidence, Time = {T}Y): ${VaR:.2f}")
+
 
 #PLOT (VaR)
 x = np.linspace(start = mu - 4*sigma, stop = mu + 4*sigma, num = 1000)
